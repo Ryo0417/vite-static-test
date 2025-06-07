@@ -129,8 +129,8 @@ ${forwardStatements}`;
               // メインのstyle.scssも更新
               await updateMainStyleScss();
 
-              // ブラウザをリロード
-              ws.send({ type: "full-reload" });
+              // ViteのHMR機能に任せるため、手動リロードは削除
+              // ws.send({ type: "full-reload" });
             }
           } catch (error) {
             logger.error(`Error processing SCSS file: ${error}`);
@@ -189,8 +189,8 @@ ${forwardStatements}`;
                   await writeFile(indexPath, indexContent, "utf8");
                   logger.debug(`Updated _index.scss in ${dirPath}`);
 
-                  // ブラウザをリロード
-                  ws.send({ type: "full-reload" });
+                  // ViteのHMR機能に任せるため、手動リロードは削除
+                  // ws.send({ type: "full-reload" });
                 }
               } catch (err) {
                 // _index.scssが存在しない場合は何もしない
@@ -206,8 +206,8 @@ ${forwardStatements}`;
       watcher.on("change", (filePath) => {
         if (filePath.endsWith(".scss") && filePath.includes(SASS_ROOT)) {
           // ファイル変更のログは出力しない
-          // ただしブラウザのリロードは行う
-          ws.send({ type: "full-reload" });
+          // ViteのHMR機能に任せるため、手動リロードは削除
+          // ws.send({ type: "full-reload" });
         }
       });
 

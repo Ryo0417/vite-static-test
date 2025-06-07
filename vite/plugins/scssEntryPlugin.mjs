@@ -29,13 +29,24 @@ class ScssEntryPlugin extends BaseVitePlugin {
         bundle[fileName].fileName = "assets/css/style.css";
         // console.log(`Renamed CSS file: ${fileName} -> assets/css/style.css`);
 
-        // CSSの内容が圧縮されていないことを確認
+        // CSSの内容が圧縮されていないことを確認し、画像パスを修正
         if (
           bundle[fileName].source &&
           typeof bundle[fileName].source === "string"
         ) {
-          // 既に圧縮されている場合は、元のソースを保持
-          // console.log("Ensuring CSS is not minified");
+          // 画像パスを修正: ../images/ -> ../images/common/
+          let cssContent = bundle[fileName].source;
+
+          // SCSSで使用されている画像パスを正しいパスに変換
+          cssContent = cssContent.replace(
+            /url\(\.\.\/images\/quotation\.svg\)/g,
+            "url(../images/common/quotation.svg)"
+          );
+
+          // 修正した内容を反映
+          bundle[fileName].source = cssContent;
+
+          console.log("Fixed CSS image paths for quotation.svg");
         }
       }
 

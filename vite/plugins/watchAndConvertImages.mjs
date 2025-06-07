@@ -86,11 +86,11 @@ class WatchAndConvertImagesPlugin extends BaseVitePlugin {
           await unlink(filePath);
           console.log(`Removed original image: ${filePath}`);
 
-          // ブラウザをリロード
-          ws.send({
-            type: "full-reload",
-            path: "*",
-          });
+          // 画像変換時もViteのHMR機能に任せる
+          // ws.send({
+          //   type: "full-reload",
+          //   path: "*",
+          // });
 
           this.processingFiles.delete(filePath);
         } catch (err) {
