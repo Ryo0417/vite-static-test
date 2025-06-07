@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
-// HMR用プラグインを削除してVite標準のHMR機能を使用
-// import liveReload from "vite-plugin-live-reload";
+// HTMLファイルのみリロード対象にして、SCSSはViteのHMRを使用
+import liveReload from "vite-plugin-live-reload";
 // import fullReload from "vite-plugin-full-reload";
 import { resolve } from "path";
 import { promises as fs } from "fs";
@@ -241,8 +241,12 @@ export default defineConfig({
     // SCSSファイルの自動フォワーディングプラグイン
     autoForwardScssFiles(),
 
-    // Vite標準のHMR機能を使用するため、カスタムHMRプラグインは削除
-    // SCSSファイルはViteが自動的にHMRを適用します
+    // 初心者向け：HTML・JSともにページリロード
+    liveReload(["./src/**/*.html", "./src/**/*.js"], { alwaysReload: true }),
+
+    /*  JSもHMR対応(ライブラリの初期化が重複する事があるため外部ライブラリを使用する際は一工夫が必要)
+        使用する場合は上のliveReloadをコメントアウトする */
+    // liveReload(["./src/**/*.html"], { alwaysReload: true }),
 
     // 画像ファイルの監視と変換プラグイン
     watchAndConvertImages(),
