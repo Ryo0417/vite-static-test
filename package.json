@@ -1,0 +1,39 @@
+{
+  "name": "your-theme-name",
+  "version": "1.0.0",
+  "description": "Static Site Development Project",
+  "main": "vite.config.mjs",
+  "scripts": {
+    "dev": "rimraf .vite && dotenv -- vite --force",
+    "build": "rimraf dist && dotenv -- vite build",
+    "preview": "vite preview",
+    "build:preview": "npm run build && npm run preview",
+    "postinstall": "echo 'Installation completed successfully'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.14",
+    "browser-sync": "^2.29.1",
+    "css-declaration-sorter": "^6.4.0",
+    "fs": "^0.0.1-security",
+    "postcss-preset-env": "^8.5.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^7.3.0",
+    "postcss-sort-media-queries": "^5.2.0",
+    "sass-embedded": "^1.87.0",
+    "sharp": "^0.34.1",
+    "uglify-save-license": "^0.4.1",
+    "vite": "^5.1.4",
+    "vite-plugin-full-reload": "^1.2.0",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-live-reload": "^3.0.4",
+    "glob": "^10.3.10",
+    "rimraf": "^5.0.1"
+  }
+}
